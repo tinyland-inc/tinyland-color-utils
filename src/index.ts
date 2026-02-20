@@ -1,5 +1,5 @@
 /**
- * @tinyland-inc/tinyland-color-utils
+ * @tummycrypt/tinyland-color-utils
  *
  * Pure JavaScript color utilities with WCAG contrast validation,
  * color space conversions, and LRU caching. Zero framework dependencies.

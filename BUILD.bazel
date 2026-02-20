@@ -1,5 +1,5 @@
 """
-BUILD.bazel for @tinyland-inc/tinyland-color-utils.
+BUILD.bazel for @tummycrypt/tinyland-color-utils.
 
 Dual-mode build: works with both pnpm (standalone) and Bazel (CI/production).
   Standalone: cd packages/tinyland-color-utils && pnpm test
@@ -59,7 +59,7 @@ npm_package(
         "package.json",
         ":tinyland_color_utils",
     ],
-    package = "@tinyland-inc/tinyland-color-utils",
+    package = "@tummycrypt/tinyland-color-utils",
     version = "0.1.0",
     visibility = ["//visibility:public"],
 )
