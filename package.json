@@ -4,28 +4,31 @@
   "description": "Pure JavaScript color utilities with WCAG contrast validation, color space conversions, and caching",
   "type": "module",
   "license": "(Zlib AND LicenseRef-Tinyland-Proprietary)",
-  "main": "./src/index.ts",
-  "module": "./src/index.ts",
-  "types": "./src/index.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./src/index.ts",
-      "types": "./src/index.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
     },
     "./types": {
-      "import": "./src/utils/color/types.ts",
-      "types": "./src/utils/color/types.ts"
+      "types": "./dist/utils/color/types.d.ts",
+      "import": "./dist/utils/color/types.js"
     },
     "./cache": {
-      "import": "./src/utils/color/cache.ts",
-      "types": "./src/utils/color/cache.ts"
+      "types": "./dist/utils/color/cache.d.ts",
+      "import": "./dist/utils/color/cache.js"
     }
   },
   "files": [
-    "src/",
-    "!src/**/*.test.ts"
+    "dist",
+    "!dist/**/*.test.*"
   ],
   "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run build",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit"
