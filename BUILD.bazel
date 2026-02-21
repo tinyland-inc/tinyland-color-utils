@@ -41,7 +41,7 @@ ts_project(
     transpiler = "tsc",
     deps = [
         "//:node_modules",
-        "//:tsconfig_base",
+        "//packages:tsconfig_base",
         "//:node_modules/@types/node",
     ],
     visibility = ["//visibility:public"],
@@ -93,7 +93,7 @@ js_test(
         "//:node_modules/@fast-check/vitest",
         "vitest.config.ts",
     ],
-    entry_point = "//:node_modules/vitest/vitest.mjs",
+    entry_point = "//:vitest_bin",
     args = [
         "run",
         "--reporter=verbose",
@@ -117,7 +117,7 @@ ts_project(
     transpiler = "tsc",
     deps = [
         "//:node_modules",
-        "//:tsconfig_base",
+        "//packages:tsconfig_base",
         "//:node_modules/@types/node",
     ],
     visibility = ["//visibility:public"],
