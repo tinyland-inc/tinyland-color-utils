@@ -16,9 +16,9 @@ beforeEach(() => {
   clearAllCaches();
 });
 
-// ---------------------------------------------------------------------------
-// parseHex
-// ---------------------------------------------------------------------------
+
+
+
 describe('parseHex', () => {
   it('should parse 6-digit hex', () => {
     const result = parseHex('#ff0000');
@@ -50,8 +50,8 @@ describe('parseHex', () => {
   });
 
   it('should return null for invalid hex length', () => {
-    // parseHex doesn't validate hex chars (returns NaN values for non-hex),
-    // but does reject invalid lengths
+    
+    
     expect(parseHex('#12')).toBeNull();
     expect(parseHex('')).toBeNull();
     expect(parseHex('#1')).toBeNull();
@@ -64,9 +64,9 @@ describe('parseHex', () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// parseRgb
-// ---------------------------------------------------------------------------
+
+
+
 describe('parseRgb', () => {
   it('should parse legacy comma-separated rgb', () => {
     const result = parseRgb('rgb(255, 128, 0)');
@@ -99,9 +99,9 @@ describe('parseRgb', () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// parseHsl
-// ---------------------------------------------------------------------------
+
+
+
 describe('parseHsl', () => {
   it('should parse hsl and convert to rgb', () => {
     const result = parseHsl('hsl(0, 100%, 50%)');
@@ -132,9 +132,9 @@ describe('parseHsl', () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// parseOklchString
-// ---------------------------------------------------------------------------
+
+
+
 describe('parseOklchString', () => {
   it('should parse basic oklch', () => {
     const result = parseOklchString('oklch(0.5 0.19 27)');
@@ -193,9 +193,9 @@ describe('parseOklchString', () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// parseOklabString
-// ---------------------------------------------------------------------------
+
+
+
 describe('parseOklabString', () => {
   it('should parse basic oklab', () => {
     const result = parseOklabString('oklab(0.5 0.1 -0.05)');
@@ -224,9 +224,9 @@ describe('parseOklabString', () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// parseOklchToRgb / parseOklabToRgb
-// ---------------------------------------------------------------------------
+
+
+
 describe('parseOklchToRgb', () => {
   it('should convert oklch string to RGB', () => {
     const result = parseOklchToRgb('oklch(0.5 0.19 27)');
@@ -257,9 +257,9 @@ describe('parseOklabToRgb', () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// parseColor (unified parser)
-// ---------------------------------------------------------------------------
+
+
+
 describe('parseColor', () => {
   it('should parse hex colors', () => {
     const result = parseColor('#ff0000');
@@ -313,9 +313,9 @@ describe('parseColor', () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// Property-based tests
-// ---------------------------------------------------------------------------
+
+
+
 describe('property-based parsing', () => {
   fcTest.prop(
     [fc.integer({ min: 0, max: 255 }), fc.integer({ min: 0, max: 255 }), fc.integer({ min: 0, max: 255 })],

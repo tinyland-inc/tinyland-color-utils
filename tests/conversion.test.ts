@@ -21,9 +21,9 @@ beforeEach(() => {
   clearAllCaches();
 });
 
-// ---------------------------------------------------------------------------
-// hexToRgb / rgbToHex
-// ---------------------------------------------------------------------------
+
+
+
 describe('hexToRgb', () => {
   it('should convert white hex to RGB', () => {
     expect(hexToRgb('#ffffff')).toEqual({ r: 255, g: 255, b: 255, a: 1 });
@@ -69,9 +69,9 @@ describe('rgbToHex', () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// rgbToHsl / hslToRgb
-// ---------------------------------------------------------------------------
+
+
+
 describe('rgbToHsl', () => {
   it('should convert red to HSL', () => {
     const result = rgbToHsl({ r: 255, g: 0, b: 0 });
@@ -123,9 +123,9 @@ describe('hslToRgb', () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// RGB <-> HSL round-trip
-// ---------------------------------------------------------------------------
+
+
+
 describe('RGB <-> HSL round-trip', () => {
   fcTest.prop(
     [fc.integer({ min: 0, max: 255 }), fc.integer({ min: 0, max: 255 }), fc.integer({ min: 0, max: 255 })],
@@ -133,7 +133,7 @@ describe('RGB <-> HSL round-trip', () => {
     const original: RGB = { r, g, b };
     const hsl = rgbToHsl(original);
     const roundTripped = hslToRgb(hsl);
-    // Allow +/- 1 for rounding
+    
     expect(roundTripped.r).toBeGreaterThanOrEqual(r - 1);
     expect(roundTripped.r).toBeLessThanOrEqual(r + 1);
     expect(roundTripped.g).toBeGreaterThanOrEqual(g - 1);
@@ -143,9 +143,9 @@ describe('RGB <-> HSL round-trip', () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// OKLCH / OKLAB conversions
-// ---------------------------------------------------------------------------
+
+
+
 describe('oklchToRgb', () => {
   it('should convert black OKLCH to RGB', () => {
     const result = oklchToRgb(0, 0, 0);
@@ -214,9 +214,9 @@ describe('rgbToOklab', () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// OKLCH <-> OKLAB interconversion
-// ---------------------------------------------------------------------------
+
+
+
 describe('oklchToOklab / oklabToOklch', () => {
   it('should round-trip oklch through oklab', () => {
     const original: OKLCH = { l: 0.5, c: 0.15, h: 120 };
@@ -234,7 +234,7 @@ describe('oklchToOklab / oklabToOklch', () => {
       fc.float({ min: Math.fround(0.01), max: Math.fround(359.99), noNaN: true }),
     ],
   )('round-trips oklch through oklab for arbitrary values', (l, c, h) => {
-    // Skip if chroma is too close to zero (hue becomes undefined)
+    
     if (c < 0.0001) return;
     const original: OKLCH = { l, c, h };
     const oklab = oklchToOklab(original);
@@ -245,9 +245,9 @@ describe('oklchToOklab / oklabToOklch', () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// oklchStringToRgbValues
-// ---------------------------------------------------------------------------
+
+
+
 describe('oklchStringToRgbValues', () => {
   it('should convert oklch string to space-separated RGB', () => {
     const result = oklchStringToRgbValues('oklch(0.5 0.19 27)');
@@ -264,9 +264,9 @@ describe('oklchStringToRgbValues', () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// alphaBlend
-// ---------------------------------------------------------------------------
+
+
+
 describe('alphaBlend', () => {
   it('should blend fully opaque foreground over background', () => {
     const result = alphaBlend({ r: 255, g: 0, b: 0, a: 1 }, { r: 0, g: 255, b: 0 });
@@ -295,9 +295,9 @@ describe('alphaBlend', () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// hex round-trip property test
-// ---------------------------------------------------------------------------
+
+
+
 describe('hex round-trip', () => {
   fcTest.prop(
     [fc.integer({ min: 0, max: 255 }), fc.integer({ min: 0, max: 255 }), fc.integer({ min: 0, max: 255 })],

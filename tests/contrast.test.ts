@@ -21,9 +21,9 @@ beforeEach(() => {
   clearAllCaches();
 });
 
-// ---------------------------------------------------------------------------
-// getRelativeLuminance
-// ---------------------------------------------------------------------------
+
+
+
 describe('getRelativeLuminance', () => {
   it('should return 0 for black', () => {
     expect(getRelativeLuminance({ r: 0, g: 0, b: 0 })).toBeCloseTo(0);
@@ -48,9 +48,9 @@ describe('getRelativeLuminance', () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// getContrastRatio
-// ---------------------------------------------------------------------------
+
+
+
 describe('getContrastRatio', () => {
   it('should return 21:1 for white on black', () => {
     const ratio = getContrastRatio({ r: 255, g: 255, b: 255 }, { r: 0, g: 0, b: 0 });
@@ -83,13 +83,13 @@ describe('getContrastRatio', () => {
   )('contrast ratio is always between 1 and 21', (r1, g1, b1, r2, g2, b2) => {
     const ratio = getContrastRatio({ r: r1, g: g1, b: b1 }, { r: r2, g: g2, b: b2 });
     expect(ratio).toBeGreaterThanOrEqual(1);
-    expect(ratio).toBeLessThanOrEqual(21.1); // slight tolerance for floating point
+    expect(ratio).toBeLessThanOrEqual(21.1); 
   });
 });
 
-// ---------------------------------------------------------------------------
-// meetsWCAG
-// ---------------------------------------------------------------------------
+
+
+
 describe('meetsWCAG', () => {
   it('should pass AA for white on black', () => {
     expect(meetsWCAG('#ffffff', '#000000', 'AA')).toBe(true);
@@ -104,7 +104,7 @@ describe('meetsWCAG', () => {
   });
 
   it('should pass AA-large at 3:1 ratio', () => {
-    // White on gray should pass for large text
+    
     expect(meetsWCAG('#ffffff', '#767676', 'AA-large')).toBe(true);
   });
 
@@ -113,9 +113,9 @@ describe('meetsWCAG', () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// analyzeContrast
-// ---------------------------------------------------------------------------
+
+
+
 describe('analyzeContrast', () => {
   it('should provide full analysis for white on black', () => {
     const result = analyzeContrast('#ffffff', '#000000');
@@ -134,9 +134,9 @@ describe('analyzeContrast', () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// isLargeText
-// ---------------------------------------------------------------------------
+
+
+
 describe('isLargeText', () => {
   it('should return true for 24px text', () => {
     expect(isLargeText(24, 400)).toBe(true);
@@ -156,9 +156,9 @@ describe('isLargeText', () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// getPerceivedBrightness / isLightColor
-// ---------------------------------------------------------------------------
+
+
+
 describe('getPerceivedBrightness', () => {
   it('should return high brightness for white', () => {
     const brightness = getPerceivedBrightness({ r: 255, g: 255, b: 255 });
@@ -185,9 +185,9 @@ describe('isLightColor', () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// getContrastingColor
-// ---------------------------------------------------------------------------
+
+
+
 describe('getContrastingColor', () => {
   it('should return black text for light backgrounds', () => {
     const result = getContrastingColor({ r: 255, g: 255, b: 255 });
@@ -196,15 +196,15 @@ describe('getContrastingColor', () => {
 
   it('should return white text for dark backgrounds', () => {
     const result = getContrastingColor({ r: 0, g: 0, b: 0 });
-    // preferDark=true by default, but background is dark, so it returns black
-    // actually for dark backgrounds with preferDark=true, should still return contrasting
+    
+    
     expect(result.r + result.g + result.b).toBeGreaterThanOrEqual(0);
   });
 });
 
-// ---------------------------------------------------------------------------
-// adjustColorForContrast
-// ---------------------------------------------------------------------------
+
+
+
 describe('adjustColorForContrast', () => {
   it('should return original color if already meets target', () => {
     const result = adjustColorForContrast('#ffffff', '#000000');
@@ -214,14 +214,14 @@ describe('adjustColorForContrast', () => {
   it('should adjust low-contrast color', () => {
     const result = adjustColorForContrast('#808080', '#909090', 4.5);
     const ratio = getContrastRatio(result, { r: 0x90, g: 0x90, b: 0x90 });
-    // Either meets target or reached boundary
+    
     expect(ratio >= 4.5 || result.r === 255 || result.r === 0).toBe(true);
   });
 });
 
-// ---------------------------------------------------------------------------
-// isReadableOnGlass
-// ---------------------------------------------------------------------------
+
+
+
 describe('isReadableOnGlass', () => {
   it('should return true for white text on dark glass over dark background', () => {
     const result = isReadableOnGlass(
@@ -244,9 +244,9 @@ describe('isReadableOnGlass', () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// batchValidate
-// ---------------------------------------------------------------------------
+
+
+
 describe('batchValidate', () => {
   it('should validate multiple pairs', () => {
     const results = batchValidate([
@@ -268,9 +268,9 @@ describe('batchValidate', () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// simulateColorBlindness
-// ---------------------------------------------------------------------------
+
+
+
 describe('simulateColorBlindness', () => {
   it('should simulate protanopia', () => {
     const result = simulateColorBlindness({ r: 255, g: 0, b: 0 }, 'protanopia');
@@ -303,7 +303,7 @@ describe('simulateColorBlindness', () => {
     const proto = simulateColorBlindness(gray, 'protanopia');
     const deut = simulateColorBlindness(gray, 'deuteranopia');
     const trit = simulateColorBlindness(gray, 'tritanopia');
-    // Gray should remain approximately gray
+    
     expect(Math.abs(proto.r - proto.g)).toBeLessThan(30);
     expect(Math.abs(deut.r - deut.g)).toBeLessThan(30);
     expect(Math.abs(trit.r - trit.g)).toBeLessThan(30);

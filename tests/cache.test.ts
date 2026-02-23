@@ -13,9 +13,9 @@ beforeEach(() => {
   clearAllCaches();
 });
 
-// ---------------------------------------------------------------------------
-// ColorCache class
-// ---------------------------------------------------------------------------
+
+
+
 describe('ColorCache', () => {
   it('should store and retrieve values', () => {
     const cache = new ColorCache<string, number>(10);
@@ -41,7 +41,7 @@ describe('ColorCache', () => {
     cache.set('a', 1);
     cache.set('b', 2);
     cache.set('c', 3);
-    cache.set('d', 4); // should evict 'a'
+    cache.set('d', 4); 
     expect(cache.get('a')).toBeUndefined();
     expect(cache.get('b')).toBe(2);
     expect(cache.get('d')).toBe(4);
@@ -53,9 +53,9 @@ describe('ColorCache', () => {
     cache.set('a', 1);
     cache.set('b', 2);
     cache.set('c', 3);
-    // Access 'a' to make it most recent
+    
     cache.get('a');
-    // Now insert 'd', which should evict 'b' (the oldest after access)
+    
     cache.set('d', 4);
     expect(cache.get('a')).toBe(1);
     expect(cache.get('b')).toBeUndefined();
@@ -99,9 +99,9 @@ describe('ColorCache', () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// Singleton caches
-// ---------------------------------------------------------------------------
+
+
+
 describe('singleton caches', () => {
   it('parseCache should work', () => {
     parseCache.set('test', { r: 255, g: 0, b: 0 });
@@ -124,9 +124,9 @@ describe('singleton caches', () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// clearAllCaches
-// ---------------------------------------------------------------------------
+
+
+
 describe('clearAllCaches', () => {
   it('should clear all singleton caches', () => {
     parseCache.set('a', { r: 0, g: 0, b: 0 });
@@ -143,9 +143,9 @@ describe('clearAllCaches', () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// getAllCacheStats
-// ---------------------------------------------------------------------------
+
+
+
 describe('getAllCacheStats', () => {
   it('should return stats for all caches', () => {
     parseCache.set('a', { r: 0, g: 0, b: 0 });
@@ -165,35 +165,35 @@ describe('getAllCacheStats', () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// LRU eviction ordering
-// ---------------------------------------------------------------------------
+
+
+
 describe('LRU eviction ordering', () => {
   it('should maintain correct eviction order across many operations', () => {
     const cache = new ColorCache<number, number>(5);
-    // Fill cache
+    
     for (let i = 0; i < 5; i++) {
       cache.set(i, i * 10);
     }
     expect(cache.size).toBe(5);
 
-    // Access item 0 and 1 to make them recent
+    
     cache.get(0);
     cache.get(1);
 
-    // Add new items, should evict 2, 3, 4 in order
+    
     cache.set(10, 100);
-    expect(cache.has(2)).toBe(false); // 2 was oldest untouched
+    expect(cache.has(2)).toBe(false); 
     expect(cache.has(0)).toBe(true);
     expect(cache.has(1)).toBe(true);
 
     cache.set(11, 110);
-    expect(cache.has(3)).toBe(false); // 3 was next oldest
+    expect(cache.has(3)).toBe(false); 
 
     cache.set(12, 120);
-    expect(cache.has(4)).toBe(false); // 4 was next oldest
+    expect(cache.has(4)).toBe(false); 
 
-    // 0 and 1 should still be there
+    
     expect(cache.get(0)).toBe(0);
     expect(cache.get(1)).toBe(10);
   });
