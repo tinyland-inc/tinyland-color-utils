@@ -1,6 +1,6 @@
 {
   "name": "@tummycrypt/tinyland-color-utils",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Pure JavaScript color utilities with WCAG contrast validation, color space conversions, and caching",
   "type": "module",
   "license": "(Zlib AND LicenseRef-Tinyland-Proprietary)",

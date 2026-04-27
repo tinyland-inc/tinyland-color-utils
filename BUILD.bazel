@@ -63,7 +63,7 @@ npm_package(
         ":tinyland_color_utils",
     ],
     package = "@tummycrypt/tinyland-color-utils",
-    version = "0.2.2",
+    version = "0.2.3",
     visibility = ["//visibility:public"],
 )
 
