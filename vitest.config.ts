@@ -12,5 +12,14 @@ export default defineConfig({
     root: __dirname,
     include: ['tests/**/*.test.ts'],
     globals: true,
+    pool: 'threads',
+    deps: {
+      interopDefault: true,
+    },
+    server: {
+      deps: {
+        inline: ['@fast-check/vitest'],
+      },
+    },
   },
 });
