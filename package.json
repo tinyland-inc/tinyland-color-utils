@@ -1,6 +1,6 @@
 {
   "name": "@tummycrypt/tinyland-color-utils",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "Pure JavaScript color utilities with WCAG contrast validation, color space conversions, and caching",
   "type": "module",
   "license": "(Zlib AND LicenseRef-Tinyland-Proprietary)",
@@ -28,10 +28,11 @@
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf dist",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "pnpm build && pnpm check:package",
     "test": "vitest run",
     "test:watch": "vitest",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "check:package": "publint"
   },
   "keywords": [
     "color",
@@ -45,22 +46,26 @@
   "author": "Tinyland Inc.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tinyland-inc/tinyland.dev",
-    "directory": "packages/tinyland-color-utils"
+    "url": "git+https://github.com/tinyland-inc/tinyland-color-utils.git"
   },
   "devDependencies": {
     "@fast-check/vitest": "^0.2.4",
     "@types/node": "^24.6.0",
     "fast-check": "^4.3.0",
     "typescript": "^5.5.0",
-    "vitest": "^3.0.0"
+    "vitest": "^4.0.0",
+    "publint": "^0.3.18"
   },
   "engines": {
     "node": ">=22.0.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
-    "access": "public",
-    "provenance": true
+    "access": "public"
+  },
+  "packageManager": "pnpm@10.13.1",
+  "homepage": "https://github.com/tinyland-inc/tinyland-color-utils",
+  "bugs": {
+    "url": "https://github.com/tinyland-inc/tinyland-color-utils/issues"
   }
 }

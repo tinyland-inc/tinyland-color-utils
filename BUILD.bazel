@@ -39,7 +39,7 @@ ts_project(
     ) + ["package.json"],
     declaration = True,
     declaration_map = True,
-    source_map = True,
+    source_map = False,
     tsconfig = ":tsconfig.json",
     transpiler = "tsc",
     out_dir = "dist",
@@ -47,7 +47,6 @@ ts_project(
     validate = False,
     deps = [
         ":node_modules",
-        "//packages:tsconfig_base",
         ":node_modules/@types/node",
     ],
     visibility = ["//visibility:public"],
@@ -64,7 +63,7 @@ npm_package(
         ":tinyland_color_utils",
     ],
     package = "@tummycrypt/tinyland-color-utils",
-    version = "0.1.0",
+    version = "0.2.2",
     visibility = ["//visibility:public"],
 )
 
@@ -77,7 +76,6 @@ vitest_bin.vitest_test(
     data = [
         ":node_modules",
         "tsconfig.json",
-        "//packages:tsconfig_base",
         ":node_modules/vitest",
         ":node_modules/fast-check",
         ":node_modules/@fast-check/vitest",
@@ -107,7 +105,6 @@ ts_project(
     validate = False,
     deps = [
         ":node_modules",
-        "//packages:tsconfig_base",
         ":node_modules/@types/node",
     ],
     visibility = ["//visibility:public"],
